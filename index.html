@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff8ea">
+<title>BaoZiTI 包子TI｜你是哪一款人间限定包子？</title>
+<meta name="description" content="BaoZiTI 包子人格测试：从你的选择里，找到藏在灵魂深处的那只包子。">
+<style>
+:root{--cream:#fff8ea;--beige:#f6e7c8;--brown:#7b4a2a;--brown2:#a9764b;--red:#b5483f;--orange:#f4a259;--yellow:#ffe08a;--ink:#4a3022;--shadow:0 10px 30px rgba(123,74,42,.14);--font:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;overflow-x:hidden}
+body{font-family:var(--font);color:var(--ink);background:radial-gradient(circle at 15% 0%,#fff3d0 0,transparent 45%),radial-gradient(circle at 100% 30%,#ffe6cf 0,transparent 40%),linear-gradient(180deg,#fff9ec,#f8ebcf);min-height:100vh;line-height:1.7;position:relative}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background-image:radial-gradient(rgba(123,74,42,.07) 1px,transparent 1.2px);background-size:14px 14px;z-index:0}
+.wrap{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:18px 16px calc(36px + env(safe-area-inset-bottom))}
+.page{display:none}
+.page.active{display:block;animation:pageIn .55s ease both}
+@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+button{font-family:inherit;cursor:pointer;border:0}
+.btn{display:block;width:100%;padding:15px 20px;border-radius:999px;font-size:17px;font-weight:700;color:#fff;background:linear-gradient(180deg,#c9594d,#a8403a);box-shadow:0 6px 0 #8a3029,0 12px 22px rgba(168,64,58,.28);transition:transform .12s,box-shadow .12s;position:relative}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 #8a3029,0 4px 10px rgba(168,64,58,.25)}
+.btn.ghost{background:#fff;color:var(--brown);box-shadow:0 5px 0 #e6d3b0,0 10px 18px rgba(123,74,42,.1);border:1.5px solid #ecd9b5}
+.btn.ghost:active{box-shadow:0 1px 0 #e6d3b0;transform:translateY(4px)}
+.btn.gold{background:linear-gradient(180deg,#f7b45f,#e48f2e);box-shadow:0 6px 0 #b86d1a,0 12px 22px rgba(228,143,46,.3)}
+.btn.gold:active{box-shadow:0 1px 0 #b86d1a}
+.btn.small{padding:10px 16px;font-size:14px;display:inline-block;width:auto}
+/* home */
+.logo{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:900;font-size:22px;color:var(--brown);letter-spacing:.5px;margin-top:6px}
+.logo svg{width:34px;height:34px}
+.logo small{font-size:12px;font-weight:600;color:var(--brown2);background:#fff;border-radius:99px;padding:1px 9px;border:1px solid #ecd9b5}
+.hero{text-align:center;padding-top:10px}
+.hero h1{font-size:clamp(28px,8.2vw,40px);line-height:1.25;margin:14px 0 8px;color:var(--brown);font-weight:900;letter-spacing:1px}
+.hero h1 em{font-style:normal;color:var(--red);background:linear-gradient(transparent 62%,rgba(255,224,138,.8) 62%)}
+.hero .sub{font-size:16px;color:var(--brown2);margin:0 0 6px}
+.stage{position:relative;height:290px;margin:6px auto 0;width:280px}
+.stage .bunwrap{position:absolute;left:50%;top:48px;width:210px;transform:translateX(-50%);z-index:1;animation:floaty 3.6s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-9px)}}
+.steam{position:absolute;top:34px;width:14px;height:60px;border-radius:50%;background:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,0));filter:blur(5px);opacity:0;animation:steam 3.2s ease-in infinite;z-index:3}
+.steam:nth-child(1){left:90px}.steam:nth-child(2){left:132px;animation-delay:1s}.steam:nth-child(3){left:172px;animation-delay:2s}
+@keyframes steam{0%{transform:translateY(40px) scale(.6);opacity:0}30%{opacity:.9}100%{transform:translateY(-30px) scale(1.5);opacity:0}}
+.basket{position:absolute;left:0;right:0;bottom:0;height:98px;z-index:2;border-radius:16px 16px 30px 30px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.12) 0 3px,transparent 3px 22px),linear-gradient(#d9a566,#b97d3f 70%,#a56c33);box-shadow:0 14px 24px rgba(123,74,42,.25),inset 0 -6px 0 rgba(0,0,0,.08)}
+.basket:before{content:"";position:absolute;left:-10px;right:-10px;top:-12px;height:26px;border-radius:99px;background:linear-gradient(#e8bd80,#c88b4a);box-shadow:0 4px 0 #a56c33}
+.basket:after{content:"";position:absolute;left:12px;right:12px;top:30px;height:3px;background:rgba(0,0,0,.12);border-radius:3px;box-shadow:0 22px 0 rgba(0,0,0,.1)}
+.quote{margin:18px 6px 10px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.7);border:1px dashed #e2c898;color:var(--brown);font-size:15px}
+.slogan{font-size:14px;color:var(--brown2);margin:10px 0 18px;font-style:italic}
+.pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0 0}
+.pill{font-size:13px;padding:5px 12px;border-radius:99px;background:#fff;border:1px solid #ecd9b5;color:var(--brown2)}
+.stack{display:grid;gap:12px;margin-top:6px}
+.tiny{font-size:12px;color:#a58a72;text-align:center;margin-top:16px}
+/* quiz */
+.qhead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.chip{background:#fff;border:1px solid #ecd9b5;color:var(--brown);padding:7px 13px;border-radius:99px;font-size:14px;font-weight:600;box-shadow:0 2px 0 #ecd9b5;transition:transform .1s}
+.chip:active{transform:translateY(2px);box-shadow:none}
+.chip:disabled{opacity:.4;pointer-events:none}
+.count{font-weight:900;font-size:18px;color:var(--brown);font-variant-numeric:tabular-nums}
+.count span{color:var(--brown2);font-weight:600;font-size:14px}
+.pbar{height:10px;border-radius:99px;background:#efdcb8;margin:14px 0 20px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.08)}
+.pbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#f7b45f,#d9644f);transition:width .45s ease}
+.qcard{background:rgba(255,255,255,.85);border-radius:26px;padding:22px 18px 18px;box-shadow:var(--shadow);border:1px solid #f1e2c3}
+.qcard.in{animation:qIn .4s ease both}
+.qcard.out{animation:qOut .22s ease both}
+@keyframes qIn{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+@keyframes qOut{to{opacity:0;transform:translateX(-26px)}}
+.qno{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--orange);padding:2px 10px;border-radius:99px;margin-bottom:8px}
+.qtext{font-size:19px;font-weight:800;line-height:1.55;color:var(--brown);margin:0 0 16px}
+.opts{display:grid;gap:11px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;padding:13px 14px;border-radius:16px;background:#fffdf7;border:2px solid #f0e1c2;color:var(--ink);font-size:15.5px;line-height:1.55;transition:transform .12s,border-color .15s,background .15s,box-shadow .15s}
+.opt b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--beige);color:var(--brown);display:grid;place-items:center;font-size:13px;margin-top:1px}
+.opt:active{transform:scale(.98)}
+.opt.sel{border-color:var(--red);background:#fff0e3;box-shadow:0 0 0 3px rgba(181,72,63,.14)}
+.opt.sel b{background:var(--red);color:#fff}
+@media(hover:hover){.opt:hover{border-color:#e3b980}}
+/* loading */
+.loading{text-align:center;padding-top:60px}
+.loading h2{color:var(--brown);margin:30px 0 6px}
+.loading p{color:var(--brown2);min-height:26px;margin:0}
+.lstage{position:relative;width:240px;height:220px;margin:0 auto}
+.lstage .bunwrap{position:absolute;left:50%;top:60px;width:150px;transform:translateX(-50%);animation:rise 1.4s ease-in-out infinite alternate;z-index:1}
+@keyframes rise{from{transform:translate(-50%,10px) scale(.9)}to{transform:translate(-50%,-12px) scale(1.04)}}
+.lstage .basket{height:80px}
+.lstage .steam{top:40px}
+.lstage .steam:nth-child(1){left:72px}.lstage .steam:nth-child(2){left:110px}.lstage .steam:nth-child(3){left:148px}
+/* result */
+.rtop{text-align:center;color:var(--brown2);font-size:15px;margin:6px 8px 4px}
+.rtag{text-align:center;font-size:13px;font-weight:700;color:var(--red);letter-spacing:2px;margin-top:6px}
+.hero-card{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffdf6,#fff1d6);border-radius:30px;padding:26px 18px 24px;margin-top:12px;text-align:center;box-shadow:var(--shadow);border:1px solid #f1e2c3}
+.hero-card:before{content:"";position:absolute;width:300px;height:300px;left:50%;top:-60px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,224,138,.7),transparent 65%)}
+.hero-card .bunbox{position:relative;width:min(230px,62vw);margin:0 auto;animation:floaty2 3.8s ease-in-out infinite}
+@keyframes floaty2{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-card h2{position:relative;font-size:21px;line-height:1.5;color:var(--brown);margin:12px 0 4px;font-weight:900}
+.shortname{position:relative;display:inline-block;background:var(--red);color:#fff;font-weight:800;padding:3px 16px;border-radius:99px;font-size:15px}
+.kws{position:relative;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.kws span{background:#fff;border:1px solid #efd8a8;color:var(--brown);padding:4px 13px;border-radius:99px;font-size:14px;font-weight:700}
+.card{background:rgba(255,255,255,.88);border-radius:24px;padding:18px;margin-top:14px;box-shadow:var(--shadow);border:1px solid #f1e2c3}
+.card h3{margin:0 0 8px;font-size:17px;color:var(--brown);display:flex;align-items:center;gap:7px}
+.card p{margin:0;font-size:15px;color:#5b4132}
+.grid2{display:grid;gap:14px;margin-top:14px}
+.grid2 .card{margin-top:0}
+.motto{margin-top:14px;text-align:center;padding:20px 18px;border-radius:24px;background:linear-gradient(135deg,#b5483f,#d9764d);color:#fff;box-shadow:0 12px 26px rgba(181,72,63,.28)}
+.motto small{display:block;opacity:.85;font-size:12px;letter-spacing:3px;margin-bottom:6px}
+.motto p{margin:0;font-size:18px;font-weight:800;line-height:1.6}
+.dim{margin:14px 0}
+.dim .t{font-size:13px;color:var(--brown2);font-weight:700;text-align:center;margin-bottom:4px}
+.dim .l{display:flex;justify-content:space-between;font-size:14px;font-weight:800;color:var(--brown)}
+.dim .l span.lo{color:#a58a72}
+.dim .bar{height:14px;background:#efdcb8;border-radius:99px;overflow:hidden;margin-top:5px}
+.dim .bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#f7b45f,#d9644f);transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.dim .note{font-size:12.5px;color:#a58a72;margin-top:3px;text-align:center}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.actions .btn{font-size:15px;padding:14px 8px}
+.actions .full{grid-column:1/-1}
+/* reward */
+.reward{margin-top:22px;position:relative;border-radius:28px;padding:26px 18px 22px;text-align:center;background:linear-gradient(180deg,#fffaf0,#fbe9c6);border:1.5px dashed #e2b97a;box-shadow:var(--shadow);overflow:hidden}
+.reward h3{margin:6px 0 4px;font-size:21px;color:var(--brown);font-weight:900}
+.reward .rs{color:var(--brown2);font-size:14px;margin:0 0 4px}
+.reward .free{font-size:12.5px;color:#a58a72;margin:0 0 14px}
+.rdeco{position:absolute;width:46px;opacity:.9}
+.rdeco.a{left:10px;top:10px;transform:rotate(-12deg)}
+.rdeco.b{right:10px;top:12px;transform:rotate(10deg)}
+.rwbox{display:inline-block;max-width:100%;padding:10px;border-radius:22px;background:#fff;box-shadow:0 8px 22px rgba(123,74,42,.18);cursor:zoom-in;position:relative}
+.rwbox img{display:block;width:min(300px,72vw);height:auto;border-radius:14px}
+.rwbox .zoom{position:absolute;right:16px;bottom:16px;background:rgba(0,0,0,.55);color:#fff;font-size:12px;border-radius:99px;padding:2px 10px}
+.rwfail{display:none;padding:22px 16px;border-radius:16px;background:#fff;color:var(--brown2);font-size:14px;border:1px solid #ecd9b5}
+.rwthanks{margin:14px 0 0;color:var(--brown);font-weight:700;font-size:15px}
+/* overlays */
+.overlay{position:fixed;inset:0;z-index:50;background:rgba(40,24,14,.82);display:none;align-items:center;justify-content:center;padding:18px;animation:pageIn .3s ease both}
+.overlay.show{display:flex}
+#lightbox img{max-width:min(94vw,640px);max-height:86vh;width:auto;height:auto;border-radius:14px;background:#fff}
+#lightbox .hint{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#fff;font-size:13px;opacity:.85}
+.modalbox{background:var(--cream);border-radius:24px;padding:16px;max-width:420px;width:100%;max-height:92vh;overflow:auto;text-align:center}
+.modalbox img{width:100%;max-width:300px;height:auto;border-radius:14px;box-shadow:var(--shadow);display:block;margin:0 auto 12px}
+.modalbox p{font-size:13px;color:var(--brown2);margin:0 0 12px}
+.modalbox .row{display:grid;gap:10px}
+.toast{position:fixed;left:50%;bottom:calc(30px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:rgba(60,36,22,.92);color:#fff;padding:10px 20px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:.3s;z-index:99;max-width:88vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:700px){.wrap{max-width:600px;padding-top:30px}.grid2{grid-template-columns:1fr 1fr}.grid2 .card.wide{grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ 
+<!-- 首页 -->
+<section class="page active" id="home">
+  <div class="logo"><span id="logoBun"></span>BaoZiTI <small>包子TI</small></div>
+  <div class="hero">
+    <h1>你是哪一款<br><em>人间限定包子</em>？</h1>
+    <p class="sub">从你的选择里，找到藏在灵魂深处的那只包子。</p>
+    <div class="stage">
+      <span class="steam"></span><span class="steam"></span><span class="steam"></span>
+      <div class="bunwrap" id="homeBun"></div>
+      <div class="basket"></div>
+    </div>
+    <div class="quote">这不是严肃的心理学测试，只是一场关于性格、生活方式与灵魂褶皱的有趣探索。</div>
+    <div class="slogan">「世界上有千千万万人，但每个人都有属于自己的褶皱。」</div>
+    <div class="stack">
+      <button class="btn" id="btnStart">开始寻找我的包子人格</button>
+      <button class="btn ghost" id="btnContinue" style="display:none"></button>
+    </div>
+    <div class="pills"><span class="pill">⏱ 预计测试时间：约 3 分钟</span><span class="pill">�� 包子人格数量：16 种</span><span class="pill">�� 本测试仅供娱乐</span></div>
+    <div class="tiny">不注册 · 不登录 · 不收集任何个人信息</div>
+  </div>
+</section>
+ 
+<!-- 答题 -->
+<section class="page" id="quiz">
+  <div class="qhead">
+    <button class="chip" id="btnBack">‹ 上一题</button>
+    <div class="count" id="qCount">01<span>/20</span></div>
+    <button class="chip" id="btnHome">首页</button>
+  </div>
+  <div class="pbar"><i id="pFill"></i></div>
+  <div class="qcard in" id="qCard"></div>
+  <div class="tiny">选择后自动进入下一题 · 可随时返回修改</div>
+</section>
+ 
+<!-- 计算 -->
+<section class="page" id="loading">
+  <div class="loading">
+    <div class="lstage">
+      <span class="steam"></span><span class="steam"></span><span class="steam"></span>
+      <div class="bunwrap" id="loadBun"></div>
+      <div class="basket"></div>
+    </div>
+    <h2>包子正在蒸笼里慢慢揭晓…</h2>
+    <p id="loadTxt">正在把你的选择揉成面团…</p>
+  </div>
+</section>
+ 
+<!-- 结果 -->
+<section class="page" id="result">
+  <div class="qhead" style="margin-bottom:6px">
+    <button class="chip" id="btnHome2">‹ 首页</button>
+    <span class="logo" style="margin:0;font-size:17px">BaoZiTI</span>
+    <button class="chip" id="btnRestartTop">重测</button>
+  </div>
+  <div class="rtop">经过一番灵魂拷问，你的包子人格终于揭晓……</div>
+  <div class="rtag">你的专属包子人格是</div>
+  <div id="resultContent"></div>
+ 
+  <div class="actions">
+    <button class="btn ghost" id="btnRestart">�� 重新测试</button>
+    <button class="btn ghost" id="btnCopy">�� 复制我的包子人格</button>
+    <button class="btn gold" id="btnShare">�� 分享给朋友</button>
+    <button class="btn" id="btnCard">�� 生成专属分享卡片</button>
+  </div>
+ 
+  <section class="reward" id="reward">
+    <svg class="rdeco a" viewBox="0 0 200 200" id="rd1"></svg>
+    <svg class="rdeco b" viewBox="0 0 200 200" id="rd2"></svg>
+    <h3>觉得准的话，请作者吃个包子？</h3>
+    <p class="rs">你的每一份支持，都是 BaoZiTI 继续发面的动力。</p>
+    <p class="free">完全自愿，不赞赏也欢迎继续玩、继续分享 ♡</p>
+    <div class="rwbox" id="rwBox" title="点击放大">
+      <img id="rwImg" src="./reward.png" alt="作者的赞赏码" loading="lazy">
+      <span class="zoom">�� 点击放大</span>
+    </div>
+    <div class="rwfail" id="rwFail">赞赏码暂时没能加载出来～<br>（请确认 reward.png 与 index.html 放在同一目录）<br>不影响测试，谢谢你的心意！</div>
+    <p class="rwthanks">感谢投喂，祝你每天都有好包子吃！</p>
+  </section>
+  <div class="tiny">BaoZiTI · 本测试仅供娱乐，请勿当真，请勿对号入座太用力</div>
+</section>
+</div>
+ 
+<div class="overlay" id="lightbox"><img id="lbImg" alt="赞赏码大图"><div class="hint">点击任意位置关闭</div></div>
+<div class="overlay" id="cardModal">
+  <div class="modalbox">
+    <img id="cardImg" alt="我的包子人格分享卡片">
+    <p>手机可长按图片保存，也可点击下方按钮下载 PNG</p>
+    <div class="row">
+      <button class="btn" id="btnDownload">⬇ 下载分享卡片</button>
+      <button class="btn ghost" id="btnCloseCard">关闭</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+ 
+<script>
+(function(){
+"use strict";
+/* ============ 维度 ============ */
+var DIM_TITLES=["能量来源","思维方式","行动模式","面对世界的态度"];
+var DIM_POLES=[["热闹型","独处型"],["理性型","感性型"],["规划型","随性型"],["稳定型","探索型"]];
+var DIM_NOTE=[
+ ["你在人群里更容易充电","你需要独处来给自己回血"],
+ ["做决定时更相信逻辑与分析","做决定时更相信直觉与感受"],
+ ["喜欢提前安排，心里有谱","喜欢随机应变，保留惊喜"],
+ ["偏爱熟悉可靠的节奏","对新鲜未知充满好奇"]
+];
+/* 分数数组 [能量, 思维, 行动, 态度]：正数偏第一极(热闹/理性/规划/稳定)，负数偏第二极 */
+var Q=[
+{q:"周五晚上，你终于结束了一周的学习或工作，这时候你最想做什么？",o:[["立刻约人出去，今晚必须热闹。",[2,0,0,0]],["回家躺着，谁也别想打扰我。",[-2,0,0,0]],["看看有没有有趣的事情，随缘决定。",[0,0,-2,-1]],["先制定一个完美的周末计划。",[0,1,2,0]]]},
+{q:"朋友突然发来一句「我有件事想跟你说」，你第一反应是？",o:[["怎么了？发生什么了？",[1,-2,0,0]],["先别说，让我做好心理准备。",[-1,0,1,1]],["哈哈哈，你又怎么了？",[1,0,-2,0]],["等等，我先分析一下事情的严重程度。",[0,2,1,0]]]},
+{q:"如果突然获得一整天完全自由的时间，你会？",o:[["找朋友一起出去玩。",[2,0,0,0]],["一个人享受难得的清静。",[-2,0,0,0]],["临时决定，想到什么做什么。",[0,0,-2,-1]],["提前规划好一天的安排。",[0,0,2,1]]]},
+{q:"路过一家没吃过的新店，门口排着长队，你会？",o:[["排！没吃过的就是要试试。",[0,0,0,-2]],["算了，还是去常吃的那家稳妥。",[0,0,0,2]],["先翻翻评价和评分再决定。",[0,2,1,1]],["拉朋友一起排，边排边聊也不亏。",[2,-1,0,-1]]]},
+{q:"小组要开始一个新项目，你更可能是哪一种状态？",o:[["拉清单、定分工、排时间表。",[1,1,2,0]],["别吵我，我自己先闷头做出个雏形。",[-2,1,0,0]],["先聊聊灵感，想法比计划重要。",[1,-1,-1,-1]],["先放着，deadline 才是第一生产力。",[0,0,-2,0]]]},
+{q:"压力大到有点喘不过气的时候，你通常会？",o:[["找人倾诉，说出来就好一半。",[2,-1,0,0]],["关上门，一个人安静待着。",[-2,0,0,0]],["把问题列出来，一个个拆开解决。",[0,2,1,1]],["先去吃好吃的、睡一觉，明天再说。",[0,-1,-1,-1]]]},
+{q:"看一部很感人的电影，到了高潮部分，你会？",o:[["当场眼泪决堤，纸巾已就位。",[1,-2,0,0]],["默默忍住，脸上什么都看不出来。",[-1,-1,0,1]],["脑子里在想：这个情节是怎么设计出来的？",[0,2,0,0]],["散场后一个人把某段台词反复回味。",[-1,-2,0,0]]]},
+{q:"计划一次旅行，你最像下面哪种人？",o:[["攻略表精确到分钟，备选方案三套。",[0,1,2,1]],["只订了机票，剩下的到了再说。",[0,0,-2,-2]],["朋友定好行程，我负责跟着玩。",[1,0,-1,1]],["最想去一个没人认识我的地方发呆。",[-2,-1,-1,-1]]]},
+{q:"买一件想了很久的东西，最后下单靠的是什么？",o:[["把参数、价格、口碑列表对比。",[0,2,1,0]],["看眼缘，对上了就是它。",[0,-2,-1,0]],["问问朋友的意见，大家说好才安心。",[1,-1,0,1]],["还是买用了多年的那个牌子。",[0,0,1,2]]]},
+{q:"聚会上突然冷场，大家都低头看手机，你会？",o:[["主动抛个梗把气氛带起来。",[2,0,0,0]],["默默吃东西，等别人开口。",[-2,0,0,0]],["悄悄观察谁有点不自在，递杯饮料过去。",[-1,-2,0,1]],["提议玩个游戏，顺便想好规则。",[1,1,1,-1]]]},
+{q:"原本安排得好好的计划，突然被打乱了，你的内心OS是？",o:[["好吧，立刻重新排一份新的。",[0,1,2,0]],["咦，居然有点开心？",[0,0,-2,-2]],["有点烦，但还是接受了。",[0,-1,1,1]],["说不定新的安排更有意思呢。",[1,0,-1,-2]]]},
+{q:"发现身边的人犯了个不小的错误，你会？",o:[["直接告诉对方，早点改最重要。",[1,2,0,0]],["悄悄帮忙补上，不让对方难堪。",[0,-2,0,1]],["先当没看见，不是我该管的。",[-2,0,0,0]],["记下来，以后自己避开这个坑。",[-1,2,1,1]]]},
+{q:"凌晨三点还睡不着，你的脑子在忙什么？",o:[["刷手机、找还没睡的朋友聊两句。",[1,0,-1,0]],["突然开始思考一些奇奇怪怪的宏大问题。",[-1,1,0,-2]],["回放白天或多年前某个尴尬瞬间。",[-1,-2,0,1]],["复盘今天，并规划明天的待办。",[0,1,2,1]]]},
+{q:"你更喜欢收到哪种礼物？",o:[["实用的，马上就能用上。",[0,2,1,1]],["有故事、有心意、独一无二的。",[0,-2,0,-1]],["盲盒或惊喜包，拆开之前什么都不知道。",[0,0,-1,-2]],["可以和朋友一起用、一起分享的。",[2,-1,0,0]]]},
+{q:"一件事努力后还是搞砸了，你的第一步是？",o:[["复盘原因，写下改进清单。",[0,2,1,0]],["不服，马上再来一次！",[1,0,-1,-2]],["难受一阵子，需要一点时间消化。",[-1,-2,0,1]],["先睡一觉，醒来再说。",[0,0,-1,1]]]},
+{q:"你现在房间（或桌面）的状态更接近？",o:[["物品各归其位，找东西不用动脑。",[0,1,2,2]],["看着乱，但我知道每样东西在哪。",[-1,0,-2,0]],["随心情布置，今天换一个样子。",[0,-2,-1,-1]],["够用就好，不需要多余的装饰。",[-1,1,0,1]]]},
+{q:"突然被推选为这次活动的负责人，你会？",o:[["太好了，终于轮到我来安排。",[2,1,1,-1]],["能推掉就推掉，我更适合在幕后。",[-2,0,0,1]],["先问清楚要负责什么、有什么规则。",[0,1,1,2]],["想的是怎么让大家都玩得开心。",[1,-2,0,0]]]},
+{q:"有人当面夸你「你真的很棒」，你的反应是？",o:[["开心接受，并说声谢谢。",[1,0,0,0]],["有点尴尬，赶紧转移话题。",[-1,0,0,1]],["下意识想：他是不是有什么目的？",[-1,2,0,1]],["立刻夸回去，礼尚往来。",[1,-1,0,0]]]},
+{q:"点开你的手机相册，最多的内容是？",o:[["各种整理好的截图、资料，还分了相册。",[0,1,2,1]],["随手拍的天空、猫狗、路边小物件。",[0,-1,-2,-1]],["和朋友们的合照与聚会现场。",[2,-1,0,0]],["几乎没有什么，定期清理得很干净。",[-2,1,0,1]]]},
+{q:"如果可以拥有一种小小的超能力，你想要？",o:[["读心术，知道每个人真正在想什么。",[0,-2,0,0]],["瞬间移动，想去哪就去哪。",[0,0,-1,-2]],["暂停时间，让自己把事情做完。",[-1,1,1,1]],["让身边所有人立刻笑起来。",[2,-1,0,0]]]}
+];
+ 
+/* ============ 16 种包子人格 ============ */
+/* key = 能量/思维/行动/态度 四位，1=第一极(热闹/理性/规划/稳定)，0=第二极 */
+var TYPES=[
+{no:"01",key:"1110",short:"帝王蟹肉包",full:"运筹帷幄恨不得连蒸笼都纳入管理的帝王蟹肉包",
+ kw:["强势果断","目标明确","领导力","掌控全局"],
+ desc:"你是那种进群三分钟就开始默默思考「这事谁来牵头」，然后发现答案是自己的人。你习惯先定目标再倒推路径，连朋友聚餐选址都能做出一份可行性报告。你不是爱控制，只是看见低效会生理性难受，但你又偏偏爱挑战新局面，所以总是一边带队一边开辟新地图。",
+ talent:"在一团乱麻里迅速找到优先级，三句话让所有人明白下一步该干什么。",
+ blind:"「我是为你好」说多了，别人听到的是「你得听我的」。偶尔也让蒸笼里的其他包子自己发一会儿面。",
+ social:"你是靠谱的发起人，也是别人又敬又怕的「群主型」朋友。其实你很在意大家有没有跟上，只是表达方式像下达指令。",
+ life:"适合有目标、有舞台、有挑战的生活。最好再配一块可以随便画计划的大白板，和一个敢跟你说「不」的好搭档。",
+ motto:"我不是想管着蒸笼，我只是想让每一屉都准时出锅。",
+ v:{shape:"dome",c1:"#fbd7bb",c2:"#ee9c76",top:"pleat",deco:"crab",eyes:"dot",mouth:"grin"}},
+{no:"02",key:"0000",short:"奇思妙想包",full:"脑洞突破蒸笼上限每天都在研发新馅料的奇思妙想包",
+ kw:["创新","好奇","想象力","拒绝被限制"],
+ desc:"你的脑子像一台永不关机的创意工坊：洗澡时想到新点子，吃饭时想到新点子，开会时也想到新点子（但没记下来）。规则对你而言更像参考建议，你更喜欢「如果换个方式会怎样」。你的手机备忘录里躺着十七个没完成的伟大计划。",
+ talent:"把毫不相干的东西拼在一起，变出让人眼前一亮的新玩法。",
+ blind:"点子多、落地少，热情值通常在第三天归零。给灵感找个「执行搭档」，能少浪费几个好馅料。",
+ social:"你是朋友圈里的「灵感提供商」，聊天永远不无聊。但被追问细节时，你可能会礼貌地转移话题。",
+ life:"适合自由度高、能不断试错的环境。每周留一个「瞎折腾日」，你会比任何时候都快乐。",
+ motto:"馅料没有标准答案，今天的锅里就是明天的爆款。",
+ v:{shape:"peach",c1:"#fff3bd",c2:"#ffd166",top:"pleat",deco:"idea",eyes:"bright",mouth:"o"}},
+{no:"03",key:"0110",short:"黑芝麻包",full:"表面冷静内心早已规划好未来十年配方的黑芝麻包",
+ kw:["独立","理性","深谋远虑","独立思考"],
+ desc:"你看起来波澜不惊，实际上大脑里正在运行一份五年、十年的长线计划，连备选方案都有备选方案。你不太爱把想法说出来，因为说出来的往往已经是「结论」。别人还在纠结今晚吃什么，你已经在考虑下一个人生阶段怎么布局。",
+ talent:"看得远、想得深，能在别人没注意的时候提前埋好伏笔。",
+ blind:"计划太满，偶尔忘记留一点位置给「意外之喜」。也别总是自己扛，适当让别人知道你在想什么。",
+ social:"朋友不多但都很稳，不爱热闹，却会在关键时刻给出最冷静的建议，是「军师型」好友。",
+ life:"适合有长期目标、可以独立推进的生活。给你一张安静的书桌，比一百场聚会更让你充电。",
+ motto:"别急，十年后的配方我早就写好了。",
+ v:{shape:"round",c1:"#8d8d99",c2:"#45454f",top:"pleat",deco:"sesame",eyes:"dot",mouth:"flat",pl:"rgba(255,255,255,.22)"}},
+{no:"04",key:"0100",short:"量子流心包",full:"一边研究宇宙起源一边忘记自己还没蒸熟的量子流心包",
+ kw:["爱思考","理智","好奇心","脑内宇宙"],
+ desc:"你可以和人聊三小时黑洞、平行宇宙和为什么猫要把东西推下桌子，却忘了自己今天还没吃饭。你对「为什么」有近乎执念的兴趣，对「待会儿几点出门」则毫无概念。外界以为你在发呆，其实你正在脑内推演一场宇宙级的实验。",
+ talent:"强大的抽象思维与联想能力，能把复杂的东西想明白，还能讲得有点意思。",
+ blind:"生活里的小事——比如钥匙、饭点、回消息——常常被你扔进量子叠加态。设几个闹钟不丢人。",
+ social:"你是让人觉得「这人好聪明又好奇怪」的类型。遇到同频的人会突然话多，遇到不同频的会自动待机。",
+ life:"适合有大量自由时间与好奇空间的生活。书、纪录片、深夜灵感，是你的三大补给。",
+ motto:"宇宙还没研究完，包子晚点蒸也不迟。",
+ v:{shape:"round",c1:"#d9f3ff",c2:"#8ed1f5",top:"open",fill:"#8ee9ff",deco:"quantum",eyes:"bright",mouth:"o"}},
+{no:"05",key:"1010",short:"爱心叉烧包",full:"自己都快凉了还惦记着给所有人分一口热包子的爱心叉烧包",
+ kw:["温暖","共情","热心","照顾他人"],
+ desc:"你对别人的情绪有雷达般的敏感：谁今天话少、谁笑得有点勉强，你都看在眼里，并且立刻开始想怎么帮忙。你愿意为朋友的一件小事奔波一整天，轮到自己的事，却常说「我没事，不用管我」。你的心像叉烧馅一样，又甜又烫。",
+ talent:"让人一靠近就觉得安心，擅长在别人最难的时候第一个出现。",
+ blind:"总把自己排在最后一位，直到「电量1%」才发现没人知道你需要充电。学会说「我也需要帮忙」。",
+ social:"你是朋友圈里的暖宝宝，人缘极佳。只是偶尔会被人当成「理所当然的好人」，记得设一点边界。",
+ life:"适合有人情味、能与人连接的生活。偶尔给自己安排一次什么都不用照顾别人的日子。",
+ motto:"我的热度不够自己用，但分给你绰绰有余。",
+ v:{shape:"round",c1:"#ffdcd4",c2:"#f39a9a",top:"open",fill:"#b8442f",deco:"heart",eyes:"happy",mouth:"smile"}},
+{no:"06",key:"1000",short:"彩虹糖包",full:"走到哪里都能交到朋友恨不得把整个蒸笼变成游乐园的彩虹糖包",
+ kw:["热情","自由","乐观","浪漫"],
+ desc:"你是那种在电梯里都能和陌生人聊出友谊的人。你相信下一秒会有好事发生，所以经常说走就走、说玩就玩。你的日程表常常写着「到时候看心情」，而心情一般都不错。你的人生就像撒了糖粒的包子，每一口都有惊喜。",
+ talent:"天然的快乐传染力，能把任何一个无聊的场合变成派对。",
+ blind:"对「后果」的预估有时过于乐观，约好的事偶尔会被新的快乐顶掉。记得给重要的事上个闹钟。",
+ social:"朋友遍布各路，每个人都以为自己是你的好朋友（其实你确实对每个人都很真心）。",
+ life:"适合变化多、人多、有新鲜事的生活。你需要阳光、旅行和能陪你闹的伙伴。",
+ motto:"生活已经够严肃了，我负责加点糖。",
+ v:{shape:"flat",c1:"#ffe5f2",c2:"#ffb4d6",top:"pleat",deco:"rainbow",eyes:"happy",mouth:"grin"}},
+{no:"07",key:"0011",short:"秘制菌菇包",full:"看透了所有人的褶皱却始终不愿拆开自己馅料的秘制菌菇包",
+ kw:["敏感","深刻","内敛","理想主义"],
+ desc:"你的观察力强得有点吓人：别人的口是心非、没说出口的情绪，你几乎都能读懂。但轮到自己，你就把门关得严严实实，馅料藏得比秘方还深。你对世界有一份不肯妥协的理想，所以常常在「理想的样子」和「现实的样子」之间默默失望。",
+ talent:"洞察力与共情的深度，能在细微处看出一个人真正的样子。",
+ blind:"明明很想被理解，却总是不说。别指望所有人都有读心术，适度表达，才有人接得住你。",
+ social:"你的朋友不多，但每一个都经过长久的考察。一旦认定，你会是最可靠、最懂对方的人。",
+ life:"适合安静、有节奏、有意义感的生活。有一个可以放心发呆的角落，是你最需要的奢侈品。",
+ motto:"我看得见你的褶皱，但我的馅料，请容我慢慢开封。",
+ v:{shape:"dome",c1:"#ead9c4",c2:"#b99870",top:"pleat",deco:"mushroom",eyes:"sleepy",mouth:"flat"}},
+{no:"08",key:"0001",short:"软糯红豆沙包",full:"躲在蒸笼角落幻想自己是一朵云的软糯红豆沙包",
+ kw:["温柔","浪漫","细腻","想象力"],
+ desc:"你说话轻声细语，喜欢待在角落，却在脑内拥有一整个云朵王国。你会因为一首歌、一束光、一句话而突然感动，也会因为别人一个眼神想上半天。你不太喜欢争吵与变化，希望世界能慢一点、软一点。",
+ talent:"柔软而细腻的感受力，擅长把平凡的小事过成一首诗。",
+ blind:"想得多、做得少，遇到冲突倾向于躲起来。有时勇敢说一句「我不想要这样」，反而能让生活更舒服。",
+ social:"你不是最吵的那一个，却是让人最想靠近的那一个。你给人的感觉像午后阳光下的一床被子。",
+ life:"适合节奏温和、有熟悉感的生活。一杯热饮、一首歌、一个不会被打扰的下午，就是你的幸福。",
+ motto:"请让我在角落里慢慢发酵，我会长成一朵云。",
+ v:{shape:"round",c1:"#f6e4e4",c2:"#d09ba3",top:"pleat",deco:"cloud",eyes:"sleepy",mouth:"smile"}},
+{no:"09",key:"1111",short:"标准化肉馅包",full:"讲究效率和纪律连包子褶都必须排列整齐的标准化肉馅包",
+ kw:["务实","自律","执行力强","重秩序"],
+ desc:"你的生活有一条看不见的流水线：几点起、几点吃、几点收工，一切都在轨道上。你讨厌拖延，也讨厌别人拖延。你桌上的东西一定是直角摆放的，你的待办清单永远在划掉的过程中。别人说「再看看」，你已经把事做完了。",
+ talent:"极强的执行力与时间管理，能把一件事按时、按质地交付。",
+ blind:"对「例外」的包容度偏低，计划被打乱时会明显焦躁。偶尔让褶子歪一点，世界也不会塌。",
+ social:"你是团队里最让人放心的那个，只要交给你的事都有回音。就是偶尔说话太像在发通知。",
+ life:"适合规则清晰、效率导向的环境。每周留一小段「不安排」的时间，对你是最好的放松训练。",
+ motto:"褶子十八道，每一道都有它该在的位置。",
+ v:{shape:"flat",c1:"#f6f1e7",c2:"#cdc1a9",top:"pleat",deco:"ruler",eyes:"dot",mouth:"flat"}},
+{no:"10",key:"1011",short:"香菇青菜包",full:"永远记得每个人喜欢什么馅甚至会主动帮你留最后一个的香菇青菜包",
+ kw:["热心","细致","重感情","会照顾人"],
+ desc:"你是那种记得朋友不吃香菜、对芒果过敏、喝奶茶只要三分糖的人。聚会前你会先问大家的口味，聚会后还会确认大家有没有安全到家。你做事细致周到，几乎从不让人失望，只是别人很少知道你为此花了多少心思。",
+ talent:"把细节做到位，让身边的人感觉被认真对待。",
+ blind:"太在意别人的感受，自己的需求常常被压成最后一个。别忘了，最后一个包子，你也值得吃。",
+ social:"你是大家公认的「靠谱好朋友」，也是各种群聊的隐形后勤。你给人的感觉，就是安心。",
+ life:"适合有温度、有规律、有人陪伴的生活。固定的小仪式，比如每周一次的聚餐，会让你特别满足。",
+ motto:"最后一个给你留着，我早就吃过了（其实没有）。",
+ v:{shape:"round",c1:"#e8f2d2",c2:"#a9cb7e",top:"pleat",deco:"leaf",eyes:"happy",mouth:"smile"}},
+{no:"11",key:"0111",short:"经典老面包",full:"从面粉比例到蒸制时间都严格遵循祖传标准的经典老面包",
+ kw:["稳定","可靠","严谨","责任感"],
+ desc:"你相信「老办法之所以老，是因为它有效」。你做事一步一步、不抢不慌，答应的事就一定做到，说过的话就一定算数。你不喜欢朝令夕改，也不太理解为什么有人每天都想变花样。你的安全感，来自于一个熟悉又可靠的节奏。",
+ talent:"可靠。当别人说「应该没问题吧」，你是那个真的确认过没问题的人。",
+ blind:"对新事物的第一反应常常是「不用了吧」。偶尔尝一口新馅料，说不定会发现它也很好吃。",
+ social:"你不是话最多的，但是最让人放心的那个。很多人在关键时刻都会想起要去找你。",
+ life:"适合稳定、有传承、有责任的生活。一杯固定的茶，一张熟悉的椅子，你就能把日子过得很踏实。",
+ motto:"老配方不会背叛你，我也不会。",
+ v:{shape:"dome",c1:"#fff7e4",c2:"#e6cf9f",top:"pleat",deco:"old",eyes:"dot",mouth:"smile"}},
+{no:"12",key:"1001",short:"暖心奶黄包",full:"不声不响地替所有人保温自己却经常被遗忘的暖心奶黄包",
+ kw:["温和","体贴","负责","善于倾听"],
+ desc:"你是群聊里那个很少发言、却把每条消息都看了的人。别人吐槽、倾诉、崩溃时，你默默听着，递上一杯温水。你很少抱怨，也很少提要求，所以大家有时会忘了你也需要被问一句「你还好吗」。你的温柔是真的，只是不太会大声宣布。",
+ talent:"倾听。你能让别人在你面前毫无防备地说出真心话。",
+ blind:"习惯默默承担，久了会累。很多事你不说，别人是真的不知道。试着把「没关系」换成「其实我有点在意」。",
+ social:"你不抢风头，但总在大家需要的时候出现。你是那种分开很久再见面，依然能自然聊起来的朋友。",
+ life:"适合平稳、被尊重、有归属感的生活。一个能让你安心做自己的小圈子，比大场面更重要。",
+ motto:"我负责保温，你们负责热闹，偶尔也请问问我暖不暖。",
+ v:{shape:"round",c1:"#fff4bd",c2:"#ffd45e",top:"open",fill:"#ffcf3a",deco:"cream",eyes:"happy",mouth:"smile"}},
+{no:"13",key:"1100",short:"爆浆芝士包",full:"人生没有什么是一口解决不了的今天就要冲出蒸笼的爆浆芝士包",
+ kw:["行动派","冒险","洒脱","爱挑战"],
+ desc:"你的行动力是「想到就做」，思考时间大概只有三秒。蹦极、裸辞、临时去另一座城市吃一碗面，你都做得出来，并且做完之后哈哈大笑。你不怕失败，只怕没试过。你的人生就像爆浆芝士，一口咬下去，惊喜（和烫嘴）并存。",
+ talent:"强大的启动能力与抗打击能力，别人还在犹豫时你已经迈出第一步。",
+ blind:"有时冲得太快，来不及看路。先花一分钟看一下后果，不会影响你的帅气。",
+ social:"你是朋友们的「冒险引导员」，和你出门总会有故事。大家爱你的洒脱，也偶尔担心你的鲁莽。",
+ life:"适合有挑战、有速度、有新鲜感的生活。静止不动对你来说才是真正的风险。",
+ motto:"想那么多干嘛，先咬一口，浆不浆再说！",
+ v:{shape:"round",c1:"#ffe9b3",c2:"#ffb447",top:"open",fill:"#ffd23f",deco:"cheese",eyes:"bright",mouth:"grin"}},
+{no:"14",key:"1101",short:"舞台中央小笼包",full:"只要有观众就能现场表演十八种吃法的舞台中央小笼包",
+ kw:["活泼","外向","感染力","表现欲"],
+ desc:"你不是在表演，就是在去表演的路上。有观众的时候你会发光，没观众的时候你会自己创造观众。你说话有节奏、有表情、有包袱，朋友聚会没有你会少一半的笑声。你把生活当成舞台，而且你演得真的不错。",
+ talent:"天生的表达力和感染力，三句话就能让一屋子人笑出声。",
+ blind:"安静下来时反而会不安，偶尔需要练习「不表演也被爱」。真实的你，也一样值得被喜欢。",
+ social:"你是社交场的核心，认识的人多，被记住的也多。只是真正的心里话，你很少对观众说。",
+ life:"适合有舞台、有观众、有互动的生活。聚会、活动、直播、演讲，都是你的主场。",
+ motto:"掌声就是我的蒸汽，没有观众我也能自己开锅。",
+ v:{shape:"peach",c1:"#fff9f0",c2:"#ecd8c2",top:"pleat",deco:"stage",eyes:"happy",mouth:"grin"}},
+{no:"15",key:"0101",short:"机械流沙包",full:"不爱解释但什么都会修连蒸笼坏了都能徒手解决的机械流沙包",
+ kw:["冷静","独立","动手能力强","实际"],
+ desc:"你话不多，但一出手大家就知道问题已经解决了。家里的灯坏了你修，朋友的电脑崩了你修，连别人的情绪崩了，你都会默默递上一句「先吃点东西吧」。你不喜欢讲道理，更相信做出来的东西。你不爱解释，是因为觉得结果自己会说话。",
+ talent:"解决问题的能力超强，遇事不乱，手比嘴快。",
+ blind:"不解释容易被误会成冷淡。别人并不是读不懂你，只是需要你多说一句「我在帮你」。",
+ social:"你是朋友们的「万能后援」，有事就找你。你不爱闲聊，但在行动里把情谊说得很清楚。",
+ life:"适合有实践空间、有工具、有自主权的生活。给你一个工作台，比给你一个舞台更幸福。",
+ motto:"别问我为什么，先让我看看哪里坏了。",
+ v:{shape:"flat",c1:"#e0e6eb",c2:"#9db0bf",top:"open",fill:"#f2c14e",deco:"gear",eyes:"dot",mouth:"flat"}},
+{no:"16",key:"0010",short:"玫瑰荔枝限定包",full:"外表安静内心住着一整个春天的玫瑰荔枝限定包",
+ kw:["审美","自由","感性","创造力"],
+ desc:"你看起来温和低调，却拥有一个色彩丰富、花开不败的内心世界。你对美有天生的敏锐：一个好看的配色、一首恰到好处的歌，都能让你悄悄开心一整天。你有很多想做的事，也有自己一套安排的节奏，只是不太愿意被别人催。",
+ talent:"审美与创造力，能把普通的东西变得好看、有故事。",
+ blind:"完美主义有时会让你迟迟不动手，等「状态最好」的那一刻。其实先做一个粗糙版本，灵感就会陆续跟上来。",
+ social:"你不爱热闹，却自带吸引力。喜欢你的人，往往是被你身上那份安静的特别感吸引的。",
+ life:"适合有美感、自由度高、能表达自己的生活。创作、手作、旅行，都是你的春天。",
+ motto:"我很安静，但我的春天一直在开花。",
+ v:{shape:"dome",c1:"#ffe0e8",c2:"#f59ab3",top:"pleat",deco:"rose",eyes:"happy",mouth:"smile"}}
+];
+ 
+/* ============ 包子 SVG 绘制 ============ */
+var SHAPES={
+ round:{p:"M30 130 C30 80 70 50 100 50 C130 50 170 80 170 130 C170 160 140 172 100 172 C60 172 30 160 30 130Z",ty:52,fy:122},
+ dome:{p:"M38 140 C32 80 66 38 100 38 C134 38 168 80 162 140 C160 165 135 174 100 174 C65 174 40 165 38 140Z",ty:40,fy:124},
+ flat:{p:"M20 135 C20 95 60 72 100 72 C140 72 180 95 180 135 C180 160 145 170 100 170 C55 170 20 160 20 135Z",ty:74,fy:136},
+ peach:{p:"M100 34 C110 50 175 70 168 135 C165 165 135 174 100 174 C65 174 35 165 32 135 C25 70 90 50 100 34Z",ty:36,fy:128}
+};
+function heart(x,y,s,c){return '<g transform="translate('+x+','+y+') scale('+s+')"><path d="M0 -6 C-10 -18 -22 0 0 14 C22 0 10 -18 0 -6Z" fill="'+c+'"/></g>';}
+function gear(x,y,r,c){return '<g transform="translate('+x+','+y+')"><circle r="'+r+'" fill="none" stroke="'+c+'" stroke-width="7" stroke-dasharray="5 4"/><circle r="'+(r-3)+'" fill="'+c+'"/><circle r="3.5" fill="#fff"/></g>';}
+function deco(id,ty){
+ var T='<g transform="translate(0,'+(ty-52)+')">',E='</g>',b='',f='';
+ switch(id){
+ case"crab":
+  f=T+'<path d="M80 46 L84 26 L93 38 L100 22 L107 38 L116 26 L120 46Z" fill="#ffc83d" stroke="#d99a00" stroke-width="2" stroke-linejoin="round"/><circle cx="100" cy="30" r="2.6" fill="#e0523f"/>'+E+
+  '<g fill="#e0523f"><circle cx="22" cy="128" r="12"/><path d="M12 118 L8 104 L22 112Z M24 114 L24 100 L34 112Z"/></g><g fill="#e0523f" transform="translate(200,0) scale(-1,1)"><circle cx="22" cy="128" r="12"/><path d="M12 118 L8 104 L22 112Z M24 114 L24 100 L34 112Z"/></g>';break;
+ case"idea":
+  f=T+'<circle cx="100" cy="30" r="11" fill="#fff59d" stroke="#f2b705" stroke-width="2.5"/><rect x="95" y="40" width="10" height="6" rx="2" fill="#aaa"/><g stroke="#f2b705" stroke-width="2.5" stroke-linecap="round"><path d="M80 24 l-8 -4 M120 24 l8 -4 M76 36 l-9 2 M124 36 l9 2 M100 12 v-6"/></g>'+E+
+  '<text x="26" y="110" font-size="22" fill="#ff9f1c">✦</text><text x="160" y="96" font-size="18" fill="#ff7aa2">✦</text><text x="150" y="160" font-size="14" fill="#5bb8e8">✦</text>';break;
+ case"sesame":
+  var pts=[[60,94],[140,94],[86,100],[118,102],[100,160],[70,158],[132,156],[46,132],[154,130],[100,90]],s='';
+  pts.forEach(function(p,i){s+='<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="4.2" ry="2.4" fill="#f7efdc" transform="rotate('+(i*37%90-40)+' '+p[0]+' '+p[1]+')"/>';});f=s;break;
+ case"quantum":
+  b='<g fill="none" stroke-width="3" stroke-dasharray="6 5"><ellipse cx="100" cy="116" rx="94" ry="26" stroke="#5bb8e8" transform="rotate(-22 100 116)"/><ellipse cx="100" cy="116" rx="94" ry="26" stroke="#a58bff" transform="rotate(24 100 116)"/></g><circle cx="12" cy="150" r="6" fill="#ff8fb1"/><circle cx="188" cy="82" r="6" fill="#7b6cff"/><circle cx="188" cy="150" r="5" fill="#5bb8e8"/>';
+  f='<circle cx="150" cy="150" r="4" fill="#fff" opacity=".7"/>';break;
+ case"heart":
+  f=heart(44,64,.7,"#ff6b81")+heart(160,56,.9,"#ff6b81")+heart(168,150,.55,"#ff8fa3")+heart(100,160,.5,"#ff6b81");break;
+ case"rainbow":
+  var cs=["#ff6b6b","#ffb347","#ffe066","#6bcB77"],r=[48,42,36,30],s2='';
+  cs.forEach(function(c,i){s2+='<path d="M'+(100-r[i])+' 56 A'+r[i]+' '+r[i]+' 0 0 1 '+(100+r[i])+' 56" fill="none" stroke="'+c+'" stroke-width="6" stroke-linecap="round"/>';});
+  f=T+s2+E+'<g stroke-width="4" stroke-linecap="round"><path d="M58 154 l7 -4" stroke="#ff6b6b"/><path d="M80 160 l7 3" stroke="#5bc0ff"/><path d="M118 162 l7 -3" stroke="#ffe066"/><path d="M140 154 l6 4" stroke="#6bcb77"/><path d="M46 124 l6 3" stroke="#a58bff"/><path d="M154 124 l-6 3" stroke="#ff9f1c"/></g>';break;
+ case"mushroom":
+  f=T+'<rect x="95" y="42" width="10" height="9" rx="3" fill="#f6ead6"/><path d="M76 46 Q100 14 124 46Z" fill="#c9503c"/><circle cx="92" cy="34" r="3.2" fill="#fff"/><circle cx="108" cy="30" r="2.6" fill="#fff"/><circle cx="114" cy="40" r="2.2" fill="#fff"/>'+E+
+  '<rect x="152" y="160" width="6" height="9" rx="2" fill="#f6ead6"/><path d="M144 162 Q155 146 166 162Z" fill="#9b6b43"/>';break;
+ case"cloud":
+  var cl=function(x,y,k){return '<g fill="#fff" opacity=".95" transform="translate('+x+','+y+') scale('+k+')"><circle cx="0" cy="0" r="9"/><circle cx="12" cy="-4" r="12"/><circle cx="24" cy="2" r="9"/><rect x="0" y="0" width="24" height="9" rx="4"/></g>';};
+  b=cl(14,52,1)+cl(150,70,.8);f='<text x="156" y="152" font-size="14" fill="#cf9aa3">✦</text><text x="32" y="156" font-size="12" fill="#cf9aa3">✦</text>';break;
+ case"ruler":
+  f='<g transform="translate(20,86) rotate(-12)"><rect width="15" height="72" rx="3" fill="#f2c14e" stroke="#c99a1d" stroke-width="1.5"/><path d="M0 10h7M0 20h10M0 30h7M0 40h10M0 50h7M0 60h10" stroke="#8a6a10" stroke-width="1.5"/></g><circle cx="164" cy="62" r="12" fill="#ffc83d" stroke="#d99a00" stroke-width="2"/><path d="M158 62 l4 5 l8 -9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M156 72 l-4 14 l10 -5 l8 5 l-3 -14Z" fill="#c0392b"/>';break;
+ case"leaf":
+  f=T+'<path d="M100 48 C80 40 72 24 77 12 C94 14 106 30 100 48Z" fill="#6bbf59"/><path d="M100 48 C120 40 128 24 123 12 C106 14 94 30 100 48Z" fill="#8fd07a"/><path d="M100 48 L100 24" stroke="#4a9a3c" stroke-width="2"/>'+E+
+  '<path d="M146 164 Q158 146 170 164Z" fill="#9b6b43"/><rect x="154" y="164" width="8" height="8" rx="2" fill="#f6ead6"/><ellipse cx="40" cy="156" rx="6" ry="3" fill="#7fc66a"/><ellipse cx="50" cy="162" rx="5" ry="2.6" fill="#a4dc8f"/>';break;
+ case"old":
+  f=T+'<g stroke="#c9a54e" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M100 46 Q96 30 100 14"/></g><g fill="#e6bd4b"><ellipse cx="94" cy="22" rx="3.4" ry="6" transform="rotate(-24 94 22)"/><ellipse cx="106" cy="22" rx="3.4" ry="6" transform="rotate(24 106 22)"/><ellipse cx="94" cy="34" rx="3.4" ry="6" transform="rotate(-24 94 34)"/><ellipse cx="106" cy="34" rx="3.4" ry="6" transform="rotate(24 106 34)"/><ellipse cx="100" cy="12" rx="3.2" ry="6"/></g>'+E+
+  '<g transform="translate(148,152) rotate(-10)"><rect x="-14" y="-14" width="28" height="28" rx="4" fill="#fff" fill-opacity=".6" stroke="#c0392b" stroke-width="3"/><text x="0" y="8" text-anchor="middle" font-size="20" font-weight="900" fill="#c0392b" font-family="serif">老</text></g>';break;
+ case"cream":
+  f=T+'<g fill="none" stroke="#ffcf8a" stroke-width="3.2" stroke-linecap="round"><path d="M84 44 q-6 -8 0 -14 q6 -8 0 -14"/><path d="M100 40 q-6 -8 0 -14 q6 -8 0 -14"/><path d="M116 44 q-6 -8 0 -14 q6 -8 0 -14"/></g>'+E+
+  '<path d="M42 156 Q100 182 158 156 L154 168 Q100 194 46 168Z" fill="#ff9f68"/><rect x="136" y="166" width="15" height="26" rx="6" fill="#ff8a4c"/>';break;
+ case"cheese":
+  b='<g stroke="#ffd9a0" stroke-width="4" stroke-linecap="round"><path d="M6 100 h22 M2 120 h26 M8 140 h20"/><path d="M194 100 h-22 M198 120 h-26 M192 140 h-20"/></g>';
+  f='<path d="M66 60 L84 60 L84 82 Q84 92 75 92 Q66 92 66 82Z" fill="#ffd23f"/><path d="M116 60 L132 60 L132 76 Q132 84 124 84 Q116 84 116 76Z" fill="#ffd23f"/><path d="M150 152 L186 166 L150 180Z" fill="#ffd23f" stroke="#e0a800" stroke-width="2" stroke-linejoin="round"/><circle cx="162" cy="165" r="2.6" fill="#e9b400"/><circle cx="172" cy="170" r="2" fill="#e9b400"/>';break;
+ case"stage":
+  b='<path d="M90 0 L2 198 L198 198 L110 0Z" fill="#fff3b0" opacity=".5"/>';
+  f='<path d="M100 164 L82 154 L82 174Z M100 164 L118 154 L118 174Z" fill="#e0523f"/><circle cx="100" cy="164" r="5" fill="#b03a2e"/><text x="24" y="86" font-size="22" fill="#ffb300">★</text><text x="156" y="72" font-size="18" fill="#ff7aa2">★</text><text x="164" y="150" font-size="14" fill="#ffb300">✦</text>';break;
+ case"gear":
+  f=gear(34,70,13,"#8497a6")+gear(168,152,17,"#7a8c9a")+gear(44,166,9,"#9fb0bd");break;
+ case"rose":
+  f=T+'<path d="M100 48 C84 46 78 36 76 30 C90 28 98 36 100 48Z" fill="#6bbf59"/><path d="M100 48 C116 46 122 36 124 30 C110 28 102 36 100 48Z" fill="#8fd07a"/><circle cx="100" cy="36" r="13" fill="#ff7aa2"/><circle cx="100" cy="36" r="8.5" fill="#ff5c8a"/><path d="M100 36 m-4 0 a4 4 0 1 1 4 4" fill="none" stroke="#c93d6b" stroke-width="2.2" stroke-linecap="round"/>'+E+
+  '<circle cx="158" cy="148" r="12" fill="#fff0f0" stroke="#f4b6c2" stroke-width="2"/><circle cx="154" cy="144" r="1.6" fill="#f4b6c2"/><circle cx="162" cy="150" r="1.6" fill="#f4b6c2"/><ellipse cx="40" cy="64" rx="6" ry="3.4" fill="#ff9fba" transform="rotate(-30 40 64)"/><ellipse cx="168" cy="84" rx="6" ry="3.4" fill="#ff9fba" transform="rotate(25 168 84)"/><ellipse cx="42" cy="158" rx="6" ry="3.4" fill="#ffb7cc" transform="rotate(15 42 158)"/>';break;
+ }
+ return [b,f];
+}
+function face(v,fy){
+ var s='',st='stroke="#3b2a20" stroke-width="3" fill="none" stroke-linecap="round"';
+ [78,122].forEach(function(x,i){
+  if(v.eyes==="dot")s+='<circle cx="'+x+'" cy="'+fy+'" r="4.6" fill="#3b2a20"/><circle cx="'+(x+1.5)+'" cy="'+(fy-1.6)+'" r="1.4" fill="#fff"/>';
+  else if(v.eyes==="bright")s+='<circle cx="'+x+'" cy="'+fy+'" r="6.4" fill="#3b2a20"/><circle cx="'+(x+2)+'" cy="'+(fy-2.4)+'" r="2.2" fill="#fff"/><circle cx="'+(x-2)+'" cy="'+(fy+2.4)+'" r="1.2" fill="#fff"/>';
+  else if(v.eyes==="happy")s+='<path d="M'+(x-6)+' '+(fy+2)+' q6 -9 12 0" '+st+'/>';
+  else s+='<path d="M'+(x-6)+' '+fy+' q6 6 12 0" '+st+'/>';
+ });
+ s+='<ellipse cx="62" cy="'+(fy+10)+'" rx="7.5" ry="4.8" fill="#ff7f7f" opacity=".45"/><ellipse cx="138" cy="'+(fy+10)+'" rx="7.5" ry="4.8" fill="#ff7f7f" opacity=".45"/>';
+ var my=fy+12;
+ if(v.mouth==="smile")s+='<path d="M92 '+my+' q8 8 16 0" '+st+'/>';
+ else if(v.mouth==="flat")s+='<path d="M94 '+(my+3)+' h12" '+st+'/>';
+ else if(v.mouth==="o")s+='<ellipse cx="100" cy="'+(my+3)+'" rx="3.4" ry="4.4" fill="#8a3b2e"/>';
+ else s+='<path d="M90 '+my+' q10 15 20 0Z" fill="#8a3b2e" stroke="#3b2a20" stroke-width="2.2" stroke-linejoin="round"/><path d="M96 '+(my+8)+' q4 -3 8 0" stroke="#ff8a8a" stroke-width="3" fill="none" stroke-linecap="round"/>';
+ return s;
+}
+var uidN=0;
+function bunSVG(v,size){
+ var id="g"+(++uidN),sp=SHAPES[v.shape],ty=sp.ty,d=deco(v.deco,ty),pl=v.pl||"rgba(120,70,30,.28)";
+ var top="";
+ if(v.top==="open"){
+  top='<ellipse cx="100" cy="'+(ty+8)+'" rx="30" ry="10" fill="'+v.fill+'" stroke="rgba(0,0,0,.12)" stroke-width="1.5"/><ellipse cx="94" cy="'+(ty+6)+'" rx="10" ry="3" fill="#fff" opacity=".35"/>';
+ }else{
+  for(var i=-3;i<=3;i++)top+='<path d="M100 '+(ty+2)+' Q'+(100+i*11)+' '+(ty+18)+' '+(100+i*21)+' '+(ty+36)+'" stroke="'+pl+'" stroke-width="2.6" fill="none" stroke-linecap="round"/>';
+  top+='<circle cx="100" cy="'+(ty+3)+'" r="5.5" fill="'+v.c1+'" stroke="'+pl+'" stroke-width="2"/>';
+ }
+ var sz=size?' width="'+size+'" height="'+size+'"':'';
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"'+sz+' style="display:block;width:100%;height:auto;overflow:visible"><defs><radialGradient id="'+id+'" cx="35%" cy="25%" r="85%"><stop offset="0" stop-color="'+v.c1+'"/><stop offset="1" stop-color="'+v.c2+'"/></radialGradient></defs>'+
+  '<ellipse cx="100" cy="184" rx="62" ry="7" fill="rgba(90,50,20,.18)"/>'+d[0]+
+  '<path d="'+sp.p+'" fill="url(#'+id+')" stroke="rgba(90,50,20,.22)" stroke-width="2.4" stroke-linejoin="round"/>'+
+  '<ellipse cx="66" cy="'+(ty+30)+'" rx="15" ry="7" fill="#fff" opacity=".38" transform="rotate(-32 66 '+(ty+30)+')"/>'+
+  top+face(v,sp.fy)+d[1]+'</svg>';
+}
+var BASIC={shape:"round",c1:"#fffaf0",c2:"#f0dcb8",top:"pleat",deco:"",eyes:"happy",mouth:"smile"};
+ 
+/* ============ 状态 ============ */
+var STORE="baoziti_v1_state";
+var answers=new Array(Q.length).fill(null),idx=0,current=null,locked=false;
+function $(s){return document.getElementById(s);}
+function save(){try{localStorage.setItem(STORE,JSON.stringify({a:answers,i:idx}));}catch(e){}}
+function load(){try{var d=JSON.parse(localStorage.getItem(STORE)||"null");if(d&&Array.isArray(d.a)&&d.a.length===Q.length){answers=d.a.map(function(x){return(typeof x==="number"&&x>=0&&x<4)?x:null;});idx=Math.min(Math.max(+d.i||0,0),Q.length-1);}}catch(e){}}
+function clearSave(){try{localStorage.removeItem(STORE);}catch(e){}}
+function answered(){return answers.filter(function(x){return x!==null;}).length;}
+function toast(t){var el=$("toast");el.textContent=t;el.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(function(){el.classList.remove("show");},2200);}
+function show(id){
+ document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
+ $(id).classList.add("active");window.scrollTo(0,0);
+}
+function pad(n){return(n<10?"0":"")+n;}
+ 
+/* ============ 计算 ============ */
+var MAXS=[0,0,0,0];
+Q.forEach(function(q){for(var d=0;d<4;d++){var m=0;q.o.forEach(function(o){m=Math.max(m,Math.abs(o[1][d]));});MAXS[d]+=m;}});
+function calc(){
+ var sc=[0,0,0,0];
+ answers.forEach(function(a,qi){var s=Q[qi].o[a][1];for(var d=0;d<4;d++)sc[d]+=s[d];});
+ var bits="",pct=[];
+ for(var d=0;d<4;d++){
+  /* 平局规则：得分为0时，默认偏向第一极（热闹/理性/规划/稳定） */
+  bits+=(sc[d]>=0)?"1":"0";
+  var p=Math.round(50+50*sc[d]/MAXS[d]);p=Math.max(0,Math.min(100,p));pct.push(p);
+ }
+ var t=TYPES.filter(function(x){return x.key===bits;})[0];
+ return{type:t,pct:pct,scores:sc,bits:bits};
+}
+ 
+/* ============ 首页 ============ */
+function renderHome(){
+ var n=answered(),bc=$("btnContinue");
+ if(n>=Q.length){bc.style.display="block";bc.textContent="查看上次结果";}
+ else if(n>0){bc.style.display="block";bc.textContent="继续上次测试（已答 "+n+"/"+Q.length+"）";}
+ else bc.style.display="none";
+}
+/* ============ 答题 ============ */
+function renderQ(anim){
+ var q=Q[idx],card=$("qCard"),h='<span class="qno">第 '+(idx+1)+' 题</span><p class="qtext">'+q.q+'</p><div class="opts">';
+ q.o.forEach(function(o,i){h+='<button class="opt'+(answers[idx]===i?' sel':'')+'" data-i="'+i+'"><b>'+"ABCD"[i]+'</b><span>'+o[0]+'</span></button>';});
+ h+='</div>';card.innerHTML=h;
+ card.className="qcard"+(anim?" in":"");
+ $("qCount").innerHTML=pad(idx+1)+'<span>/'+Q.length+'</span>';
+ $("pFill").style.width=((idx+(answers[idx]!==null?1:0))/Q.length*100)+"%";
+ $("btnBack").disabled=idx===0;
+ card.querySelectorAll(".opt").forEach(function(b){b.addEventListener("click",function(){choose(+b.getAttribute("data-i"));});});
+}
+function choose(i){
+ if(locked)return;locked=true;
+ answers[idx]=i;save();
+ var opts=$("qCard").querySelectorAll(".opt");
+ opts.forEach(function(b,k){b.classList.toggle("sel",k===i);});
+ $("pFill").style.width=((idx+1)/Q.length*100)+"%";
+ setTimeout(function(){
+  var c=$("qCard");c.classList.remove("in");c.classList.add("out");
+  setTimeout(function(){
+   if(idx<Q.length-1){idx++;save();renderQ(true);locked=false;}
+   else{locked=false;finish();}
+  },200);
+ },260);
+}
+function startQuiz(){show("quiz");renderQ(true);}
+function finish(){
+ var miss=answers.indexOf(null);
+ if(miss!==-1){idx=miss;save();toast("还有题目没回答哦～");renderQ(true);return;}
+ current=calc();save();
+ $("loadBun").innerHTML=bunSVG(BASIC);
+ show("loading");
+ var msgs=["正在把你的选择揉成面团…","正在捏出十八道褶子…","正在加入专属馅料…","蒸笼已盖上，马上揭晓…"],k=0;
+ $("loadTxt").textContent=msgs[0];
+ var iv=setInterval(function(){k=(k+1)%msgs.length;$("loadTxt").textContent=msgs[k];},700);
+ setTimeout(function(){clearInterval(iv);showResult();},2900);
+}
+/* ============ 结果 ============ */
+function showResult(){
+ if(!current){if(answered()<Q.length){return goQuizResume();}current=calc();}
+ var t=current.type,pct=current.pct,h='';
+ h+='<div class="hero-card"><div class="bunbox">'+bunSVG(t.v)+'</div><h2>「'+t.full+'」</h2><span class="shortname">'+t.short+'</span><div class="kws">'+t.kw.map(function(k){return'<span>#'+k+'</span>';}).join("")+'</div></div>';
+ h+='<div class="card"><h3>�� 你的人格分析</h3><p>'+t.desc+'</p></div>';
+ h+='<div class="grid2"><div class="card"><h3>✨ 你的隐藏天赋</h3><p>'+t.talent+'</p></div><div class="card"><h3>�� 你的性格盲区</h3><p>'+t.blind+'</p></div><div class="card"><h3>�� 你在人际关系中的表现</h3><p>'+t.social+'</p></div><div class="card"><h3>�� 你适合的生活方式</h3><p>'+t.life+'</p></div></div>';
+ h+='<div class="motto"><small>你的专属人格宣言</small><p>「'+t.motto+'」</p></div>';
+ h+='<div class="card"><h3>�� 四维度分析</h3>';
+ for(var d=0;d<4;d++){
+  var a=pct[d],b=100-a,lean=a>=50?0:1;
+  h+='<div class="dim"><div class="t">'+DIM_TITLES[d]+'</div><div class="l"><span class="'+(a>=50?'':'lo')+'">'+DIM_POLES[d][0]+' '+a+'%</span><span class="'+(b>a?'':'lo')+'">'+DIM_POLES[d][1]+' '+b+'%</span></div><div class="bar"><i data-w="'+a+'"></i></div><div class="note">'+DIM_NOTE[d][lean]+'</div></div>';
+ }
+ h+='</div>';
+ $("resultContent").innerHTML=h;
+ show("result");
+ setTimeout(function(){document.querySelectorAll("#resultContent .bar i").forEach(function(i){i.style.width=i.getAttribute("data-w")+"%";});},80);
+}
+function goQuizResume(){var m=answers.indexOf(null);idx=m<0?0:m;save();startQuiz();}
+function resultText(){
+ var t=current.type,p=current.pct,s="�� BaoZiTI 包子人格测试结果\n我的专属包子人格是：\n「"+t.full+"」\n\n关键词："+t.kw.join("、")+"\n人格宣言：「"+t.motto+"」\n\n";
+ for(var d=0;d<4;d++)s+=DIM_TITLES[d]+"："+DIM_POLES[d][0]+" "+p[d]+"% / "+DIM_POLES[d][1]+" "+(100-p[d])+"%\n";
+ s+="\n测测你是哪一款人间限定包子 �� "+pageUrl();
+ return s;
+}
+function pageUrl(){return location.href.split(/[?#]/)[0];}
+function copyText(txt){
+ if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(txt);}
+ return new Promise(function(res,rej){
+  try{var ta=document.createElement("textarea");ta.value=txt;ta.style.cssText="position:fixed;left:-999px;top:0;opacity:0";document.body.appendChild(ta);ta.focus();ta.select();var ok=document.execCommand("copy");document.body.removeChild(ta);ok?res():rej();}catch(e){rej(e);}
+ });
+}
+function doCopy(){copyText(resultText()).then(function(){toast("已复制！快去粘贴给朋友吧 ��");}).catch(function(){toast("复制失败，请手动长按选择文字复制");});}
+function doShare(){
+ if(!current)return;
+ var data={title:"BaoZiTI｜我是"+current.type.short,text:resultText().replace(/\n测测你是哪一款人间限定包子 �� .*$/,"\n测测你是哪一款人间限定包子？"),url:pageUrl()};
+ if(navigator.share){navigator.share(data).catch(function(e){if(e&&e.name==="AbortError")return;doCopy();});}
+ else{doCopy();}
+}
+function restart(){
+ answers=new Array(Q.length).fill(null);idx=0;current=null;clearSave();
+ startQuiz();
+}
+/* ============ 分享卡片 ============ */
+var cardBlobUrl=null;
+function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+function wrap(c,text,maxW){
+ var lines=[],line="";
+ for(var i=0;i<text.length;i++){var ch=text[i],tst=line+ch;
+  if(c.measureText(tst).width>maxW&&line){lines.push(line);line=ch;}else line=tst;}
+ if(line)lines.push(line);return lines;
+}
+function loadSvgImg(svg){
+ return new Promise(function(res){
+  var im=new Image();im.onload=function(){res(im);};im.onerror=function(){res(null);};
+  im.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
+ });
+}
+function makeCard(){
+ var t=current.type,p=current.pct,W=1080,H=1920,FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif';
+ return loadSvgImg(bunSVG(t.v,640)).then(function(img){
+  var cv=document.createElement("canvas");cv.width=W;cv.height=H;var c=cv.getContext("2d");
+  var g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,"#fff8ea");g.addColorStop(1,"#fbe3b5");c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.fillStyle="rgba(244,162,89,.13)";c.beginPath();c.arc(980,120,260,0,7);c.fill();c.beginPath();c.arc(80,1780,300,0,7);c.fill();
+  c.fillStyle="rgba(255,255,255,.78)";rr(c,50,50,980,1820,56);c.fill();
+  c.strokeStyle="#ecd3a0";c.lineWidth=3;c.setLineDash([14,10]);rr(c,70,70,940,1780,44);c.stroke();c.setLineDash([]);
+  c.textAlign="center";c.textBaseline="alphabetic";
+  c.fillStyle="#7b4a2a";c.font="900 74px "+FONT;c.fillText("BaoZiTI",540,170);
+  c.fillStyle="#a9764b";c.font="600 28px "+FONT;c.fillText("包子TI · 人间限定包子人格测试",540,214);
+  c.fillStyle="#b5483f";c.font="800 34px "+FONT;c.fillText("我的专属包子人格是",540,278);
+  var gl=c.createRadialGradient(540,520,20,540,520,300);gl.addColorStop(0,"rgba(255,224,138,.8)");gl.addColorStop(1,"rgba(255,224,138,0)");
+  c.fillStyle=gl;c.fillRect(200,260,680,520);
+  if(img)c.drawImage(img,300,300,480,480);
+  /* 名称 */
+  var fs=54,lines;
+  do{c.font="900 "+fs+"px "+FONT;lines=wrap(c,"「"+t.full+"」",860);fs-=2;}while(lines.length>3&&fs>34);
+  var lh=Math.round((fs+2)*1.4),y=850;
+  c.fillStyle="#7b4a2a";lines.forEach(function(l,i){c.fillText(l,540,y+i*lh);});
+  var endY=y+(lines.length-1)*lh;
+  /* 宣言 */
+  c.font="700 34px "+FONT;var ml=wrap(c,"「"+t.motto+"」",780);ml=ml.slice(0,3);
+  var bh=ml.length*50+50,by=endY+34;
+  var mg=c.createLinearGradient(100,0,980,0);mg.addColorStop(0,"#b5483f");mg.addColorStop(1,"#d9764d");
+  c.fillStyle=mg;rr(c,100,by,880,bh,36);c.fill();
+  c.fillStyle="#fff";ml.forEach(function(l,i){c.fillText(l,540,by+58+i*50);});
+  /* 维度 */
+  var dy=by+bh+36;
+  for(var d=0;d<4;d++){
+   var ry=dy+d*98;
+   c.fillStyle="#a9764b";c.font="700 26px "+FONT;c.fillText(DIM_TITLES[d],540,ry+18);
+   c.font="800 30px "+FONT;c.textAlign="left";c.fillStyle=p[d]>=50?"#7b4a2a":"#b39a82";c.fillText(DIM_POLES[d][0]+" "+p[d]+"%",110,ry+58);
+   c.textAlign="right";c.fillStyle=(100-p[d])>p[d]?"#7b4a2a":"#b39a82";c.fillText(DIM_POLES[d][1]+" "+(100-p[d])+"%",970,ry+58);
+   c.textAlign="center";
+   c.fillStyle="#efdcb8";rr(c,110,ry+68,860,18,9);c.fill();
+   var bw=Math.max(18,860*p[d]/100),bg=c.createLinearGradient(110,0,970,0);bg.addColorStop(0,"#f7b45f");bg.addColorStop(1,"#d9644f");
+   c.fillStyle=bg;rr(c,110,ry+68,bw,18,9);c.fill();
+  }
+  /* 页脚 */
+  c.fillStyle="#7b4a2a";c.font="800 38px "+FONT;c.fillText("测测你是哪一款人间限定包子？",540,1766);
+  c.fillStyle="#a9764b";c.font="600 26px "+FONT;c.fillText("BaoZiTI · 世界上有千千万万人，但每个人都有属于自己的褶皱",540,1812);
+  return cv;
+ });
+}
+var cardCanvas=null;
+function openCard(){
+ if(!current)return;
+ toast("正在蒸制分享卡片…");
+ makeCard().then(function(cv){
+  cardCanvas=cv;$("cardImg").src=cv.toDataURL("image/png");$("cardModal").classList.add("show");
+ }).catch(function(){toast("生成失败，请换个浏览器试试");});
+}
+function downloadCard(){
+ if(!cardCanvas)return;
+ var name="BaoZiTI-"+current.type.short+".png";
+ function dl(url,rev){var a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);if(rev)setTimeout(function(){URL.revokeObjectURL(url);},3000);toast("已开始下载 ��（如无反应请长按图片保存）");}
+ if(cardCanvas.toBlob){cardCanvas.toBlob(function(b){if(b)dl(URL.createObjectURL(b),true);else dl(cardCanvas.toDataURL("image/png"));},"image/png");}
+ else dl(cardCanvas.toDataURL("image/png"));
+}
+/* ============ 事件 ============ */
+function bind(){
+ $("btnStart").addEventListener("click",function(){
+  if(answered()>0&&!confirm("要重新开始吗？之前的答案会被清空。"))return;
+  answers=new Array(Q.length).fill(null);idx=0;current=null;clearSave();startQuiz();
+ });
+ $("btnContinue").addEventListener("click",function(){
+  if(answered()>=Q.length){current=calc();showResult();}else{var m=answers.indexOf(null);idx=m<0?idx:m;startQuiz();}
+ });
+ $("btnBack").addEventListener("click",function(){if(idx>0&&!locked){idx--;save();renderQ(true);}});
+ $("btnHome").addEventListener("click",function(){renderHome();show("home");});
+ $("btnHome2").addEventListener("click",function(){renderHome();show("home");});
+ $("btnRestart").addEventListener("click",restart);
+ $("btnRestartTop").addEventListener("click",restart);
+ $("btnCopy").addEventListener("click",doCopy);
+ $("btnShare").addEventListener("click",doShare);
+ $("btnCard").addEventListener("click",openCard);
+ $("btnDownload").addEventListener("click",downloadCard);
+ $("btnCloseCard").addEventListener("click",function(){$("cardModal").classList.remove("show");});
+ $("cardModal").addEventListener("click",function(e){if(e.target===this)this.classList.remove("show");});
+ /* 赞赏码 */
+ var img=$("rwImg");
+ img.addEventListener("error",function(){$("rwBox").style.display="none";$("rwFail").style.display="block";});
+ $("rwBox").addEventListener("click",function(){$("lbImg").src=img.src;$("lightbox").classList.add("show");});
+ $("lightbox").addEventListener("click",function(){this.classList.remove("show");});
+ document.addEventListener("keydown",function(e){if(e.key==="Escape"){$("lightbox").classList.remove("show");$("cardModal").classList.remove("show");}});
+}
+/* ============ 初始化 ============ */
+function init(){
+ load();
+ $("logoBun").innerHTML=bunSVG(BASIC);
+ $("homeBun").innerHTML=bunSVG(BASIC);
+ $("rd1").innerHTML=bunSVG(TYPES[11].v).replace(/^<svg[^>]*>|<\/svg>$/g,"");
+ $("rd2").innerHTML=bunSVG(TYPES[5].v).replace(/^<svg[^>]*>|<\/svg>$/g,"");
+ bind();renderHome();
+}
+init();
+})();
+</script>
+</body>
+</html>
